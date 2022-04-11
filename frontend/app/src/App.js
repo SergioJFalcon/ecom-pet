@@ -8,6 +8,54 @@ import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 
 import './App.css';
+const SHOP_DATA = [
+  {
+    title: 'Dogs',
+    items: [
+      {
+        id: 1,
+        name: 'Dog Collar - Red',
+        imageUrl: 'https://assets.petco.com/petco/image/upload/f_auto,q_auto/1517570-center-1',
+        price: 15,
+        tags: [
+          'collar', 'dog', 'red'
+        ]
+      },
+      {
+        id: 2,
+        name: 'Dog Collar - Red',
+        imageUrl: 'https://assets.petco.com/petco/image/upload/f_auto,q_auto/1517570-center-1',
+        price: 15,
+        tags: [
+          'collar', 'dog', 'blue'
+        ]
+      },
+    ]
+  },
+  {
+    title: 'Cats',
+    items: [
+      {
+        id: 1,
+        name: 'Cats Collar - Red',
+        imageUrl: 'https://assets.petco.com/petco/image/upload/f_auto,q_auto/1517570-center-1',
+        price: 15,
+        tags: [
+          'collar', 'cat', 'red'
+        ]
+      },
+      {
+        id: 2,
+        name: 'Cats Collar - Red',
+        imageUrl: 'https://assets.petco.com/petco/image/upload/f_auto,q_auto/1517570-center-1',
+        price: 15,
+        tags: [
+          'collar', 'cat', 'blue'
+        ]
+      },
+    ]
+  }
+];
 
 const App = () => {
   return (
