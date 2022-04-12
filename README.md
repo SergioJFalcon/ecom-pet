@@ -11,7 +11,7 @@ First we have to go into the React application folder so we change into that dir
 
 Primary script we will be using for development is `npm start or yarn start`:
 
-If it is your first time using this code: run: "npm install" or "yarn" to create the node_modules
+If it is your <b>first time</b> using this code: run: `npm install` or `yarn` to create the node_modules
 
 `npm start` or `yarn start` - to run the project
 
@@ -29,7 +29,7 @@ Primary script we will be using for development is `npm start`:
 
 Primary script we will be using for development is `npm start or yarn start`:
 
-If it is your first time using this code: run: "npm install" or "yarn" to create the node_modules
+If it is your <b>first time</b> using this code: run: `npm install` or `yarn` to create the node_modules
 
 `npm start` or `yarn start` - to run the projec
 
