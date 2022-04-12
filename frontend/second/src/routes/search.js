@@ -9,7 +9,6 @@ const Search = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   let [text, setText] = useState(searchParams.get('search'));
   const { categoriesMap } = useContext(CategoriesContext);
-
   const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
@@ -30,15 +29,10 @@ const Search = () => {
     some.forEach(item => {
         list_of_items = [...list_of_items, ...item];
     });
-    console.log('what this give? ', some)
-    console.log('list of items: ', list_of_items)
-    let list = list_of_items.filter((item) => {
-        if(item.title.includes(text)) {
-            return item;
-        }
-    });
+
+    let list = list_of_items.filter((item) => item.name.toLowerCase().includes(text))
     setFilteredList(list)
-    console.log('list: ', list)
+
     },[text, categoriesMap, searchParams, setSearchParams]);
 
   return (
@@ -51,7 +45,6 @@ const Search = () => {
           textAlign: 'center'
         }}
       >
-        {/* {category.toUpperCase()} */}
         Search Page
       </h2>
       <div style={{ 
