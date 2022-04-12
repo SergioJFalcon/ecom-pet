@@ -13,6 +13,8 @@ import Shop from './routes/shop';
 import Checkout from './routes/checkout';
 import FAQs from './routes/faqs';
 import Contact from './routes/contact';
+import Search from './routes/search';
+import Profile from './routes/profile';
 
 import { addCollectionAndDocuments } from './utils/firebase/firebase.utils';
 
@@ -38,6 +40,8 @@ const App = () => {
                 <Route path='checkout' element={<Checkout />} />
                 <Route path='faqs' element={<FAQs />} />
                 <Route path='contact' element={<Contact />} />
+                <Route path='search' element={<Search />} />
+                <Route path='profile' element={<Profile />} />
               </Route>
             </Routes>
           </CartProvider>

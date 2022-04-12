@@ -1,77 +1,54 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Container } from '@mui/material';
+import { UserProvider } from './contexts/user.context';
+import { CategoriesProvider } from './contexts/categories.context';
+import { CartProvider } from './contexts/cart.context';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import ProductPage from './pages/ProductPage';
 
-import './App.css';
-const SHOP_DATA = [
-  {
-    title: 'Dogs',
-    items: [
-      {
-        id: 1,
-        name: 'Dog Collar - Red',
-        imageUrl: 'https://assets.petco.com/petco/image/upload/f_auto,q_auto/1517570-center-1',
-        price: 15,
-        tags: [
-          'collar', 'dog', 'red'
-        ]
-      },
-      {
-        id: 2,
-        name: 'Dog Collar - Red',
-        imageUrl: 'https://assets.petco.com/petco/image/upload/f_auto,q_auto/1517570-center-1',
-        price: 15,
-        tags: [
-          'collar', 'dog', 'blue'
-        ]
-      },
-    ]
-  },
-  {
-    title: 'Cats',
-    items: [
-      {
-        id: 1,
-        name: 'Cats Collar - Red',
-        imageUrl: 'https://assets.petco.com/petco/image/upload/f_auto,q_auto/1517570-center-1',
-        price: 15,
-        tags: [
-          'collar', 'cat', 'red'
-        ]
-      },
-      {
-        id: 2,
-        name: 'Cats Collar - Red',
-        imageUrl: 'https://assets.petco.com/petco/image/upload/f_auto,q_auto/1517570-center-1',
-        price: 15,
-        tags: [
-          'collar', 'cat', 'blue'
-        ]
-      },
-    ]
-  }
-];
+import Home from './routes/home';
+import Navigation from './routes/navigation';
+import Authentication from './routes/authentication';
+import Shop from './routes/shop';
+import Checkout from './routes/checkout';
+import FAQs from './routes/faqs';
+import Contact from './routes/contact';
+import Search from './routes/search';
+import Profile from './routes/profile';
+
+import { addCollectionAndDocuments } from './utils/firebase/firebase.utils';
+
+import SHOP_DATA from './pet_shop_data';
 
 const App = () => {
+  /** Use this to populate Firestore database with
+   * WARNING!!! ONLY USE ONCE AND IT'LL POPULATE THE DATABASE WITH ALL THE DATA, USE IT AGAIN AND IT'LL KEEP ADDING MORE!
+   */
+  // useEffect(() => {
+  //   addCollectionAndDocuments('categories', SHOP_DATA);
+  // }, []);
   return (
     <BrowserRouter>
-    <Header />
-    <main className="py-3">
-      <Container>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-        </Routes>
-      </Container>
-    </main>
-    <Footer />
+      <UserProvider>
+        <CategoriesProvider>
+          <CartProvider>
+            <Routes>
+              <Route path='/' element={<Navigation />}>
+                <Route index element={<Home />} />
+                <Route path='shop/*' element={<Shop />} />
+                <Route path='auth' element={<Authentication />} />
+                <Route path='checkout' element={<Checkout />} />
+                <Route path='faqs' element={<FAQs />} />
+                <Route path='contact' element={<Contact />} />
+                <Route path='search' element={<Search />} />
+                <Route path='profile' element={<Profile />} />
+              </Route>
+            </Routes>
+          </CartProvider>
+        </CategoriesProvider>
+      </UserProvider>
   </BrowserRouter>
   );
-}
+};
 
 export default App;

@@ -15,6 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,10 +60,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const cart = ['cart'];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElCart, setAnchorElCart] = React.useState(null);
   let notActiveStyle = { 
     textDecoration: 'none',
     // color: 'rgba(255,255,255, .55)',
@@ -94,12 +97,20 @@ const Header = () => {
     setAnchorElUser(event.currentTarget);
   };
 
+  const handleOpenCart = (event) => {
+    setAnchorElCart(event.currentTarget);
+  }
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleCloseCart = () => {
+    setAnchorElCart(null);
   };
 
   return (
@@ -173,7 +184,7 @@ const Header = () => {
           </NavLink>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-                <NavLink to={`/${page.toLowerCase()}`} style={({ isActive }) =>
+                <NavLink key={page} to={`/${page.toLowerCase()}`} style={({ isActive }) =>
                 isActive ? activeStyle : notActiveStyle
             }>
               <Button
@@ -222,6 +233,36 @@ const Header = () => {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open Cart">
+              <IconButton onClick={handleOpenCart} sx={{ p: 0 }}>
+                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
+                <ShoppingCartIcon />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElCart}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElCart)}
+              onClose={handleCloseCart}
+            >
+              {cart.map((ct) => (
+                <MenuItem key={ct} onClick={handleOpenCart}>
+                  <Typography textAlign="center">{ct}</Typography>
                 </MenuItem>
               ))}
             </Menu>
