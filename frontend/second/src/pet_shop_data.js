@@ -750,7 +750,7 @@ const SHOP_DATA = [
         {
           id: 75,
           name: 'Small Pet Habitat - Cage',
-          imageUrl: '',
+          imageUrl: 'https://assets.petco.com/petco/image/upload/c_pad,dpr_1.0,f_auto,q_auto,h_636,w_636/c_pad,h_636,w_636/1567080-right-1',
           price: 93,
           description: 'Cage habitat meant to keep your small pet in. Ensure you buy the right size cage for your pet. Decor and other things not included.',
           tags: [

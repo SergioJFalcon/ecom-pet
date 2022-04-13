@@ -8,19 +8,18 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const FAQs = () => {
   return (
     <Fragment>
-      <div>
+      <div style={{ marginBottom: '5rem'}}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Accordion 1</Typography>
+          <Typography>Does Pet's World sell pets?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            No, Pet's World is only in the business of pet apparel and products. 
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -30,23 +29,28 @@ const FAQs = () => {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography>Accordion 2</Typography>
+          <Typography>Does Pet's World offer grooming services?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            We are in the process of expanding our website to handle our in-person grooming services. 
+            Please check back at a later date for that feature to be fully implemented. Sorry for the inconvenience.
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion disabled>
+      <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
-          <Typography>Disabled Accordion</Typography>
+          <Typography>Does Pet's World offer free shipping?</Typography>
         </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            TBD.
+          </Typography>
+        </AccordionDetails>
       </Accordion>
     </div>
     </Fragment>

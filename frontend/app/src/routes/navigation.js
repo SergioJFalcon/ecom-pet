@@ -320,24 +320,6 @@ const Navigation = () => {
             </form>
 
 
-
-
-
-{/* 
-            <div style={{ display: "flex" }}>
-              <form onSubmit={handleSubmit}>
-                <label>
-                  <input defaultValue={searchText} type="text" name="searchText" onChange={handleSearchText} />
-                </label>
-                <button type="submit">Search</button>
-              </form>
-            </div>
-            <button onClick={onNavigateHandler}>go to search</button> */}
-
-
-
-
-
             <Box sx={{ display: 'flex', alignItems: 'center'}}>
               <Box sx={{ flexGrow: 0, marginRight: '0.75rem'}}>
                 {currentUser ? (
