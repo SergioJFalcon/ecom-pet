@@ -82,7 +82,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const pages = ['Shop', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Settings'];
+const settings = ['Profile',];
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
@@ -304,23 +304,26 @@ const Navigation = () => {
               ))}
             </Box> */}
             
-            
-            <Search sx={{marginRight: '2rem'}}>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </Search>
+            <form onSubmit={handleSubmit}>
+              <Search sx={{marginRight: '2rem'}}>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  type="text" 
+                  name="searchText"
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                  onChange={handleSearchText} 
+                />
+              </Search>
+            </form>
 
 
 
 
 
-
-
+{/* 
             <div style={{ display: "flex" }}>
               <form onSubmit={handleSubmit}>
                 <label>
@@ -329,7 +332,7 @@ const Navigation = () => {
                 <button type="submit">Search</button>
               </form>
             </div>
-            <button onClick={onNavigateHandler}>go to search</button>
+            <button onClick={onNavigateHandler}>go to search</button> */}
 
 
 

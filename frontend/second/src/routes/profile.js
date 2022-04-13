@@ -7,92 +7,93 @@ import ProductCard from '../components/category/product-card';
 
 import { CategoriesContext } from '../contexts/categories.context';
 import { CartContext } from '../contexts/cart.context';
+import { UserContext } from '../contexts/user.context';
 
 const useStyles = makeStyles({
     root: {
-      width: '100%',
+      width: '80%',
       display: 'flex',
       flexDirection: 'column',
-    //   height: '80%',
       alignItems: 'center',
       position: 'relative',
-  
+      marginBottom: '5rem',
+      marginLeft: '5rem',
       '& img': {
         width: '50%',
         height: '95%',
         objectFit: 'cover',
         marginBottom: '5px',
       },
+      '& .user-row': {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+      },
+    },
+    
+    pets: {
+      marginLeft: '5rem',
+      marginBottom: '5rem',
+    },
+    payments: {
+      marginLeft: '5rem',
+      marginBottom: '5rem',
     },
 });
 
 const Profile = () => {
   const classes = useStyles();
-  const { category, productId } = useParams();
-  const { categoriesMap } = useContext(CategoriesContext);
-  const [products, setProducts] = useState(categoriesMap[category]);
-  const [product, setProduct] = useState(null);
+  const { currentUser } = useContext(UserContext);
 
-  const { addItemToCart } = useContext(CartContext);
-
-  const addProductToCart = () => addItemToCart(product);
-
-
-
-  useEffect(() => {
-    setProducts(categoriesMap[category]);
-    // debugger;
-    // let pid = categoriesMap[category].filter((item) => item.id === productId)
-    // let prod = product
-    
-    
-    if(category && categoriesMap && productId && products){
-        let item = categoriesMap[category].find(x => x.id === parseInt(productId));
-        setProduct(item)
-    }
-    
-    
-
-    // if(products) {
-        
-    //     let prod_item = products.map((item) => {
-    //         if(item.id === productId) {
-    //             return item
-    //         }
-    //     })
-    //     console.log('prod_item: ', prod_item);
-    // }
-    
-    // debugger;
-    
-  }, [category, productId, categoriesMap, products]);
-
-//   useEffect(() => {
-//     console.log('START!')
-//     categoriesMap[category]).find(x => x.id === productId)
-//   }, [])
-  
-//   if(products) {
-//     let item = products.find(x => x.id === productId);
-//     setProduct(item);
-//     console.log('item: ', item);
-//   }
-//   console.log(category, categoriesMap)
-//   console.log('category: ', category)
-  console.log('product: ', product)
-  
   return (
     <Fragment>
+      <div className={classes.root}>
         <h2 
-            className='category-title'
-            style={{ 
-            fontSize: '38px',
-            marginBottom: '25px',
-            textAlign: 'center'
-            }}
+          className='category-title'
+          style={{ 
+          fontSize: '38px',
+          marginBottom: '25px',
+          textAlign: 'center'
+          }}
         >
-            Profile Page
+          Profile
         </h2>
+        <Button variant="contained" color="primary">View Order History</Button>
+        <Button variant="contained" color="primary">Edit</Button>
+        <Button variant="contained" color="primary">Save</Button>
+        <Button variant="contained" color="primary">Cancel</Button>
+        <div className="user-row">
+          <img src={currentUser.photoUrl} alt={`${currentUser.displayName}`} />
+          <div className="user-info">
+            <div className="user-name">
+              <h3>{currentUser.displayName}</h3>
+            </div>
+            <div className="user-email">
+              <h3>Email: {currentUser.email}</h3>
+            </div>
+            <div className="user-number">
+              <h3>Phone number: {currentUser.phoneNumber}</h3>
+            </div>
+            <div className="user-number">
+              <h3>Password: enter new password</h3>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div className={classes.pets}>
+        
+          <h3>Pets</h3>
+          <div className="add-pet">
+            + Add a Pet
+          </div>
+        </div>
+        <div className={classes.payments}>
+          <h3>Payment/Billing Methods</h3>
+          <div className="add-payment">
+            + Add a Payment/Billing Method
+          </div>
+        </div>
     </Fragment>
   );
 };

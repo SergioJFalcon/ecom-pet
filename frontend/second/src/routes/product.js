@@ -25,6 +25,15 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'row',
       },
+      '& .product-description': {
+        display: 'flex',
+        flexDirection: 'row',
+        '& span': {
+          marginTop: '1.25rem',
+          marginLeft: '1rem',
+        }
+        
+      },
       '& .product-tags': {
         display: 'flex',
         flexDirection: 'row',
@@ -73,7 +82,8 @@ const Product = () => {
                 <img src={product.imageUrl} alt={`${product.name}`} />
                 <div className="product-info">
                   <div className="product-description">
-                    <h3>Description: {product.description}</h3>
+                    <h3>Description: </h3>
+                    <span>{product.description}</span>
                   </div>
                   <div className="product-tags">
                     <h3>Tags:</h3>
@@ -86,7 +96,7 @@ const Product = () => {
                     </div>
                   </div>
                   <div className="product-price">
-                    <h3>Price: ${product.price}</h3>
+                    <h3>Price: <span style={{fontSize: '28px'}}>${product.price}</span></h3>
                   </div>
                   <Button
                       variant="contained"
