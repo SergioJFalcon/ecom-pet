@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, Fragment } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import ProductCard from '../components/category/product-card';
 
 import { CategoriesContext } from '../contexts/categories.context';;
@@ -56,22 +56,22 @@ const Search = () => {
       >
         {filteredList.length > 0 
             ? 
-                filteredList.map((item) => (
-                    <ProductCard key={item.id} product={item} />
-                )) 
+              filteredList.map((item) => (
+                  <ProductCard key={item.id} product={item} title={item.title}/>
+              )) 
             : 
-                null
+              null
         }
       </div>
         {filteredList.length === 0 
             ? 
-                <div style={{ width: '100%', textAlign: 'center', marginBottom: '5rem'}}>
-                    <span>
-                        No products match your search results. Please try again.
-                    </span>
-                </div> 
+              <div style={{ width: '100%', textAlign: 'center', marginBottom: '5rem'}}>
+                  <span>
+                      No products match your search results. Please try again.
+                  </span>
+              </div> 
             : 
-                null
+              null
         }
     </Fragment>
   );

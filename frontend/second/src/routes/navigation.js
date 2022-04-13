@@ -90,7 +90,6 @@ const Navigation = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [anchorElSideNav, setAnchorElSideNav] = useState(false);
-  let [searchParams, setSearchParams] = useSearchParams();
   let [searchText, setSearchText] = useState(null);
 
   const navigate = useNavigate();
@@ -193,31 +192,19 @@ const Navigation = () => {
     </Box>
   );
 
-  // function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-  //   let formData = new FormData(event.currentTarget);
-  //   let newUser = formData.get("user") as string;
-  //   if (!newUser) return;
-  //   setSearchParams({ user: newUser });
-  // }
-  
   const handleSearchText = (event) => {
     setSearchText(event.target.value);
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log()
     if (!searchText) return;
-    // console.log('searchParams: ', searchParams.search);
-    // setSearchParams({ search: searchText });
     navigate({
       pathname: '/search',
       search: `?search=${searchText}`,
     });
   }
 
-  console.log('searchText: ', searchText);
   return (
     <Fragment>
       <div className="navigation-container" style={{ height: '70px', width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: '25px'}}>
@@ -375,12 +362,14 @@ const Navigation = () => {
                 >
                   {settings.map((setting) => (
                     <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
+                      <Link to={`/${setting.toLowerCase()}`} >
+                        <Typography textAlign="center">{setting}</Typography>
+                      </Link>
                     </MenuItem>
                   ))}
-                  <div as='span' onClick={signOutUser}>
+                  <MenuItem onClick={signOutUser}>
                     Logout
-                  </div>
+                  </MenuItem>
                 </Menu>
               </div>
                 ) : (

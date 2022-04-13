@@ -51,7 +51,6 @@ const Search = () => {
           textAlign: 'center'
         }}
       >
-        {/* {category.toUpperCase()} */}
         Search Page
       </h2>
       <div style={{ 

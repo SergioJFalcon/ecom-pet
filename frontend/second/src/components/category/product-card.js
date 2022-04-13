@@ -1,20 +1,20 @@
-import { useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
-import { Button } from '@mui/material';
-
-import { CartContext } from '../../contexts/cart.context';
 
 const useStyles = makeStyles({
   root: {
-    width: '100%',
+    width: '80%',
     display: 'flex',
     flexDirection: 'column',
     height: '350px',
     alignItems: 'center',
     position: 'relative',
-
+    marginLeft: '2rem',
+    marginRight: '2rem',
+    marginBottom: '10rem',
+    
     '& img': {
-      width: '100%',
+      width: '70%',
       height: '95%',
       objectFit: 'cover',
       marginBottom: '5px',
@@ -31,6 +31,7 @@ const useStyles = makeStyles({
     '&:hover': {
       '& img': {
         opacity: 0.8,
+        border: '1px solid black',
       },
       '& button': {
         opacity: 0.85,
@@ -57,49 +58,27 @@ const useStyles = makeStyles({
   },
 });
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, title }) => {
   const classes = useStyles();
+  const { category } = useParams();
   const { name, price, imageUrl } = product;
-  const { addItemToCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
-  const addProductToCart = () => addItemToCart(product);
+  const onNavigateHandler = () => {
+    if (category) {
+      navigate(`/shop/${category}/${product.id}`)
+    } else {
+      navigate(`/shop/${title}/${product.id}`)
+    }
+  };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={onNavigateHandler}>
       <img src={imageUrl} alt={`${name}`} />
       <div className='footer'>
         <span className='name'>{name}</span>
         <span className='price'>{price}</span>
       </div>
-      <Button
-        variant="contained"
-        onClick={addProductToCart}
-        sx={{
-          minWidth: '165px',
-          width: 'auto',
-          height: '50px',
-          letterSpacing: '0.5px',
-          lineHeight: '50px',
-          padding: '0 35px 0 35px',
-          fontSize: '15px',
-          backgroundColor: 'white',
-          color: 'black',
-          textTransform: 'uppercase',
-          fontFamily: 'Open Sans Condensed',
-          fontWeight: 'bolder',
-          border: '1px solid black',
-          cursor: 'pointer',
-          display: 'flex',
-          justifyContent: 'center',
-          '&:hover': {
-            backgroundColor: 'black',
-            color: 'white',
-            border: 'none',
-          }
-        }}
-      >
-        Add to card
-      </Button>
     </div>
   );
 };
