@@ -66,9 +66,9 @@ const ProductCard = ({ product, title }) => {
 
   const onNavigateHandler = () => {
     if (category) {
-      navigate(`/shop/${category}/${product.id}`)
+      navigate(`/shop/${category}/product/${product.id}`)
     } else {
-      navigate(`/shop/${title}/${product.id}`)
+      navigate(`/shop/${title}/product/${product.id}`)
     }
   };
 

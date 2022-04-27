@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -37,6 +38,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import PetsIcon from '@mui/icons-material/Pets';
 import CloseIcon from '@mui/icons-material/Close';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -83,6 +85,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const pages = ['Shop', 'Pricing', 'Blog'];
 const settings = ['Profile',];
+const petItems = ['Food', 'Treats', 'Toys', 'Bed', 'Bowl & Feeder']
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
@@ -91,6 +94,13 @@ const Navigation = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [anchorElSideNav, setAnchorElSideNav] = useState(false);
   let [searchText, setSearchText] = useState(null);
+  
+  const [anchorElDog, setAnchorElDog] = useState(null);
+  const [anchorElCat, setAnchorElCat] = useState(null);
+  const [anchorElFish, setAnchorElFish] = useState(null);
+  const [anchorElSmallPet, setAnchorElSmallPet] = useState(null);
+  const [anchorElBird, setAnchorElBird] = useState(null);
+  const [anchorElReptile, setAnchorElReptile] = useState(null);
 
   const navigate = useNavigate();
 
@@ -207,32 +217,11 @@ const Navigation = () => {
 
   return (
     <Fragment>
-      <div className="navigation-container" style={{ height: '70px', width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: '25px'}}>
+      <div className="navigation-container" style={{ height: '160px', width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: '25px'}}>
       <AppBar position="static">
         <Container maxWidth="xl">
-          <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenSideNav}
-                color="inherit"
-              >
-                {anchorElSideNav ? <CloseIcon /> : <MenuIcon />}
-              </IconButton>
-              <Link to='/' >
-                <Typography
-                    variant="h6"
-                    noWrap
-                    component="div"
-                    sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                >
-                  Pet's World
-              </Typography>
-            </Link>
-            </Box>
+          <Toolbar disableGutters sx={{ justifyContent: 'space-between', flexDirection: 'row' }}>
+            
             <Drawer
               anchor='left'
               open={anchorElSideNav}
@@ -280,6 +269,7 @@ const Navigation = () => {
               </Menu>
               
             </Box>
+            <Grid sx={{alignItems: 'center', width: '100%'}}>
             <Link to='/'>
               <Typography
                 variant="h6"
@@ -290,36 +280,35 @@ const Navigation = () => {
                 Pet's World
               </Typography>
             </Link>
-            {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                  <Link key={page} to={`/${page.toLowerCase()}`}>
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+            <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <Link to='/' >
+                <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, fontSize: '2.5rem' }}
                 >
-                  {page}
-                </Button>
-                </Link>
-              ))}
-            </Box> */}
-            
-            <form onSubmit={handleSubmit}>
-              <Search sx={{marginRight: '2rem'}}>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  type="text" 
-                  name="searchText"
-                  placeholder="Search…"
-                  inputProps={{ 'aria-label': 'search' }}
-                  onChange={handleSearchText} 
-                />
-              </Search>
-            </form>
-
-
+                  Pet's World
+              </Typography>
+            </Link>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <form onSubmit={handleSubmit} style={{width: "50rem"}}>
+                <Search sx={{marginRight: '2rem', width: '20rem'}}>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    type="text" 
+                    name="searchText"
+                    placeholder="Search…"
+                    inputProps={{ 'aria-label': 'search' }}
+                    onChange={handleSearchText} 
+                  />
+                </Search>
+              </form>
+            </Box>
+            </Grid>
 
 
             <Box sx={{ display: 'flex', alignItems: 'center'}}>
@@ -360,16 +349,183 @@ const Navigation = () => {
                 </Menu>
               </div>
                 ) : (
-                  <Link to='/auth'>Sign in</Link>
+                  <Grid>
+                    <Button variant="contained" sx={{ marginBottom: '1rem' }}><Link to='/auth' style={{ color: 'white' }}>Sign in</Link></Button>
+                    <Button variant="contained"><Link to='/auth' style={{ color: 'white' }}>Create Account</Link></Button>
+                  </Grid>
                 )}
               </Box>
               <Divider orientation="vertical" flexItem />
-              <Box sx={{ flexGrow: 0 }}> 
-                <CartIcon />
+              <Box sx={{ flexGrow: 0, marginLeft: '2rem' }}> 
+                <ShoppingCartIcon sx={{ color: 'black', fontSize: '72px' }} />
                 {isCartOpen && <CartDropdown />}
               </Box>
             </Box>
 
+          </Toolbar>
+          <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+          <Box>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElDog}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElDog)}
+                onClose={() => setAnchorElSmallPet(null)}
+              >
+                {petItems.map((setting) => (
+                  <Link to={`/shop/dogs/${setting.toLowerCase()}`} >
+                    <MenuItem key={setting} onClick={() => setAnchorElDog(null)}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  </Link>
+                ))}
+              </Menu>
+              <Box onClick={(event) => setAnchorElDog(event.currentTarget)}>Dogs</Box>
+            </Box>
+            <Box>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElCat}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElCat)}
+                onClose={() => setAnchorElCat(null)}
+              >
+                {petItems.map((setting) => (
+                  <Link to={`/shop/cats/${setting.toLowerCase()}`} >
+                    <MenuItem key={setting} onClick={() => setAnchorElCat(null)}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  </Link>
+                ))}
+              </Menu>
+              <Box onClick={(event) => setAnchorElCat(event.currentTarget)}>Cats</Box>
+            </Box>
+            <Box>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElFish}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElFish)}
+                onClose={() => setAnchorElSmallPet(null)}
+              >
+                {petItems.map((setting) => (
+                  <Link to={`/shop/fish/${setting.toLowerCase()}`} >
+                    <MenuItem key={setting} onClick={() => setAnchorElFish(null)}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  </Link>
+                ))}
+              </Menu>
+              <Box onClick={(event) => setAnchorElFish(event.currentTarget)}>Fish</Box>
+            </Box>
+            <Box>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElSmallPet}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElSmallPet)}
+                onClose={() => setAnchorElSmallPet(null)}
+              >
+                {petItems.map((setting) => (
+                  <Link to={`/shop/small_pets/${setting.toLowerCase()}`} >
+                    <MenuItem key={setting} onClick={() => setAnchorElSmallPet(null)}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  </Link>
+                ))}
+              </Menu>
+              <Box onClick={(event) => setAnchorElSmallPet(event.currentTarget)}>Small Pets</Box>
+            </Box>
+            <Box>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElBird}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElBird)}
+                onClose={() => setAnchorElBird(null)}
+              >
+                {petItems.map((setting) => (
+                  <Link to={`/shop/birds/${setting.toLowerCase()}`} >
+                    <MenuItem key={setting} onClick={() => setAnchorElBird(null)}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  </Link>
+                ))}
+              </Menu>
+              <Box onClick={(event) => setAnchorElBird(event.currentTarget)}>Birds</Box>
+            </Box>
+            <Box>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElReptile}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElReptile)}
+                onClose={() => setAnchorElReptile(null)}
+              >
+                {petItems.map((setting) => (
+                  <Link to={`/shop/reptiles/${setting.toLowerCase()}`} >
+                    <MenuItem key={setting} onClick={() => setAnchorElReptile(null)}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  </Link>
+                ))}
+              </Menu>
+              <Box onClick={(event) => setAnchorElReptile(event.currentTarget)}>Reptiles</Box>
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>
