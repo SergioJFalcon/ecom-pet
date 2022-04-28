@@ -1,74 +1,100 @@
-import { Fragment, useState } from 'react';
-import { Button, FormControl, FormControlLabel, FormGroup, TextField} from '@mui/material';
+import { Fragment, useState, useRef } from 'react';
+import emailjs from 'emailjs-com';
+import { Button, FormControl, FormControlLabel, FormGroup, Grid, TextField} from '@mui/material';
 
 const ContactUs = () => {
+  // const form = useRef();
   const [user, setUser] = useState({
     name: '',
     email: '',
-    comment: '',
+    email_body: '',
   })
 
-  const handleSubmit = () => {
-    alert(`Sending Pet's world your comment/question. `)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    emailjs.send("service_dqxu4te","template_5op6qa6",{
+      email_body: user.email_body,
+      name: user.name,
+      email: user.email,
+      }).then((result) => {
+        console.log(result.text);
+        alert(`Sending Pet's world your comment/question. `)
+        // setSuccessOpen(true);
+        // setSubscribeEmail('');
+    }, (error) => {
+        console.log(error.text);
+        // setErrorOpen(true);
+    });
   } 
   
   return (
     <Fragment>
-      <h2>Contact Us</h2>
-      <p>Is your question not answered in the FAQs? No problem! Contact us here and we will help you out as soon as we can!</p>
+      <Grid container sx={{ marginLeft: '2rem', marginBottom: '2rem' }}>
+        <Grid item xs={12}>
+          <h2>Contact Us</h2>
+        </Grid>
+        <Grid item xs={12}>
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-contained">
-        <div className="form-input" style={{ display: 'flex', flexDirection: 'column' }}>
-          <FormGroup sx={{ marginBottom: '2rem'}}>
-            <FormControlLabel 
-              control={
-                <TextField 
-                  id="user-name-input" 
-                  label="Name" 
-                  variant="outlined" 
-                  onChange={(e) => {
-                    e.persist();
-                    setUser((prev) => ({
-                      ...prev,
-                      name: e.target.value
-                    }));
-                  }}
-                  sx={{ 
-                    width: '25ch',
-                    marginLeft: '1rem',
-                  }}
+        <p>Is your question not answered in the FAQs? No problem! Contact us here and we will help you out as soon as we can!</p>
+        </Grid>
+      </Grid>
+      <Grid container sx={{ marginLeft: '2rem' }}>
+        <form onSubmit={handleSubmit}>
+          <Grid item xs={12}>
+            <FormGroup sx={{ marginBottom: '2rem', float: 'left' }}>
+                <FormControlLabel 
+                  control={
+                    <TextField 
+                      id="user-name-input" 
+                      label="Name" 
+                      variant="outlined" 
+                      onChange={(e) => {
+                        e.persist();
+                        setUser((prev) => ({
+                          ...prev,
+                          name: e.target.value
+                        }));
+                      }}
+                      sx={{ 
+                        width: '25ch',
+                        marginLeft: '1rem',
+                      }}
+                    />
+                  }
+                  label="Name"
+                  labelPlacement="start"
                 />
-              }
-              label="Name"
-              labelPlacement="start"
-            />
-          </FormGroup>
-          <FormGroup sx={{ marginBottom: '2rem'}}>
-            <FormControlLabel 
-              control={
-                <TextField 
-                  id="user-email-input" 
-                  label="Email" 
-                  variant="outlined" 
-                  onChange={(e) => {
-                    e.persist();
-                    setUser((prev) => ({
-                      ...prev,
-                      email: e.target.value
-                    }));
-                  }}
-                  sx={{ 
-                    width: '25ch',
-                    marginLeft: '1rem',
-                  }}
-                />
-              }
-              label="Email"
-              labelPlacement="start"
-            />
-          </FormGroup>
-          <FormGroup>
+              </FormGroup>
+          </Grid>
+
+          <Grid item xs={12}>
+            <FormGroup sx={{ marginBottom: '2rem', float: 'left' }}>
+              <FormControlLabel 
+                control={
+                  <TextField 
+                    id="user-email-input" 
+                    label="Email" 
+                    variant="outlined" 
+                    onChange={(e) => {
+                      e.persist();
+                      setUser((prev) => ({
+                        ...prev,
+                        email: e.target.value
+                      }));
+                    }}
+                    sx={{ 
+                      width: '25ch',
+                      marginLeft: '1rem',
+                    }}
+                  />
+                }
+                label="Email"
+                labelPlacement="start"
+              />
+            </FormGroup>
+          </Grid>
+          <Grid item xs={12}>
+          <FormGroup sx={{ marginBottom: '2rem', float: 'left' }}>
             <FormControlLabel 
               control={
                 <TextField 
@@ -79,7 +105,7 @@ const ContactUs = () => {
                     e.persist();
                     setUser((prev) => ({
                       ...prev,
-                      comment: e.target.value
+                      email_body: e.target.value
                     }));
                   }}
                   sx={{ 
@@ -92,24 +118,26 @@ const ContactUs = () => {
               labelPlacement="start"
             />
           </FormGroup>
-        </div>
-        <div className="submit-btn" style={{ width: '100%', alignItems: 'center' }}>
-          
+          </Grid>
+          <Grid item xs={12}>
           <Button 
             variant="contained" 
             color="primary" 
             type="submit"
             sx={{ 
               textAlign: 'center',
-              margin: '5rem',
+              marginLeft: '2rem',
+              marginBottom: '5rem',
             }}
           >
             Reach out!
           </Button>
-        
-        </div>
-        </div>
+        </Grid>
       </form>
+      </Grid>
+      
+          
+          
     </Fragment>
   );
 };

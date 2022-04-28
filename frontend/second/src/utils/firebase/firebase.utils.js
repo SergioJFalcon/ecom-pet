@@ -29,6 +29,7 @@ const firebaseConfig = {
   appId: "1:631158485905:web:86321b3c81523c32466030",
   measurementId: "G-JMBK46816V"
 };
+
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();

@@ -32,23 +32,8 @@ const FilteredCategory = () => {
     }
   }, [categoriesMap, category, productType]);
 
-  console.log('categoriesMap: ', categoriesMap);
-  console.log('data: ', category, categoriesMap)
-  console.log('category: ', category)
-  console.log('productType: ', productType)
-  console.log('products: ', products)
   return (
     <Fragment>
-      <h2 
-        className='category-title'
-        style={{ 
-          fontSize: '38px',
-          marginBottom: '25px',
-          textAlign: 'center'
-        }}
-      >
-        filtered
-      </h2>
       <div 
         className='category-container'
         style={{ 
@@ -61,8 +46,10 @@ const FilteredCategory = () => {
         {products &&
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
-          ))}
+          ))
+        }
       </div>
+      <div style={{ width: '100%', textAlign: 'center', marginTop: '5rem', marginBottom: '5rem' }}>{products.length === 0 ? <span>No products available.</span> : null}</div>
     </Fragment>
   );
 };

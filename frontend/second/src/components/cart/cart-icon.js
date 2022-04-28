@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CartContext } from '../../contexts/cart.context';
 
 const CartIcon = () => {
@@ -23,20 +23,20 @@ const CartIcon = () => {
         cursor: 'pointer',
       }}
     >
-      <ShoppingIcon 
+      <ShoppingCartIcon 
         className='shopping-icon'
         style={{
-          width: '24px',
-          height: '24px',
+          color: 'black',
+          fontSize: '72px',
         }}
       />
       <span 
         className='item-count'
         style={{
           position: 'absolute',
-          fontSize: '10px',
+          fontSize: '22px',
           fontWeight: 'bold',
-          bottom: '12px',
+          top: '0px',
         }}
       >
         {cartCount}

@@ -357,7 +357,8 @@ const Navigation = () => {
               </Box>
               <Divider orientation="vertical" flexItem />
               <Box sx={{ flexGrow: 0, marginLeft: '2rem' }}> 
-                <ShoppingCartIcon sx={{ color: 'black', fontSize: '72px' }} />
+                {/* <ShoppingCartIcon sx={{ color: 'black', fontSize: '72px' }} /> */}
+                <CartIcon />
                 {isCartOpen && <CartDropdown />}
               </Box>
             </Box>
@@ -379,7 +380,7 @@ const Navigation = () => {
                   horizontal: 'right',
                 }}
                 open={Boolean(anchorElDog)}
-                onClose={() => setAnchorElSmallPet(null)}
+                onClose={() => setAnchorElDog(null)}
               >
                 {petItems.map((setting) => (
                   <Link to={`/shop/dogs/${setting.toLowerCase()}`} >
@@ -433,7 +434,7 @@ const Navigation = () => {
                   horizontal: 'right',
                 }}
                 open={Boolean(anchorElFish)}
-                onClose={() => setAnchorElSmallPet(null)}
+                onClose={() => setAnchorElFish(null)}
               >
                 {petItems.map((setting) => (
                   <Link to={`/shop/fish/${setting.toLowerCase()}`} >

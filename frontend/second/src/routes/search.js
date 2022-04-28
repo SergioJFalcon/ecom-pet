@@ -32,7 +32,6 @@ const Search = () => {
 
     let list = list_of_items.filter((item) => item.name.toLowerCase().includes(text))
     setFilteredList(list)
-
     },[text, categoriesMap, searchParams, setSearchParams]);
 
   return (
