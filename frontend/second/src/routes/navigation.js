@@ -1,6 +1,6 @@
 import { Fragment, useContext, useState,  } from 'react';
 import { Link, Route, Routes, Outlet, useSearchParams, useNavigate } from 'react-router-dom';
-
+import {v4 as uuid_v4} from "uuid";
 import CartIcon from '../components/cart/cart-icon';
 import CartDropdown from '../components/cart/cart-dropdown';
 
@@ -94,7 +94,7 @@ const Navigation = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [anchorElSideNav, setAnchorElSideNav] = useState(false);
   let [searchText, setSearchText] = useState(null);
-  
+  const [uuid, setUUID] = useState(uuid_v4());
   const [anchorElDog, setAnchorElDog] = useState(null);
   const [anchorElCat, setAnchorElCat] = useState(null);
   const [anchorElFish, setAnchorElFish] = useState(null);
@@ -208,11 +208,11 @@ const Navigation = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!searchText) return;
     navigate({
       pathname: '/search',
-      search: `?search=${searchText}`,
+      search: `?search=${searchText}&uuid=${uuid}`,
     });
+    setUUID(uuid_v4())
   }
 
   return (

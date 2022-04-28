@@ -10,6 +10,7 @@ const Search = () => {
   let [text, setText] = useState(searchParams.get('search'));
   const { categoriesMap } = useContext(CategoriesContext);
   const [filteredList, setFilteredList] = useState([]);
+  const [uuid, setUUID] = useState(searchParams.get('uuid'));
 
   useEffect(() => {
     /* 
@@ -17,7 +18,8 @@ const Search = () => {
 
         We'll use this list to search through with the search param
     */
-   let list_of_items = [];
+    
+    let list_of_items = [];
     let some = Object.keys(categoriesMap).map((title) => {        
       return categoriesMap[title].map((item) => {
         return {
@@ -26,15 +28,24 @@ const Search = () => {
         }
       })
     });
+    console.log('some: ', some);
     some.forEach(item => {
         list_of_items = [...list_of_items, ...item];
     });
 
+    console.log('list_of_items: ', list_of_items);
     let list = list_of_items.filter((item) => item.name.toLowerCase().includes(text))
     setFilteredList(list)
+    setUUID(searchParams.get('uuid'));
+    setText(searchParams.get('search'));
+    if(text === ''){
+      setFilteredList(list_of_items);
+    }
+    },[text, categoriesMap, searchParams, setSearchParams, uuid]);
 
-    },[text, categoriesMap, searchParams, setSearchParams]);
-
+  console.log('searchParams: ', searchParams);
+  console.log('text: ', text);
+  console.log('uuid: ', uuid);
   return (
     <Fragment>
       <h2 
