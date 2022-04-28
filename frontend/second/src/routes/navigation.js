@@ -351,7 +351,7 @@ const Navigation = () => {
                 ) : (
                   <Grid>
                     <Button variant="contained" sx={{ marginBottom: '1rem' }}><Link to='/auth' style={{ color: 'white' }}>Sign in</Link></Button>
-                    <Button variant="contained"><Link to='/auth' style={{ color: 'white' }}>Create Account</Link></Button>
+                    <Button variant="contained"><Link to='/signup' style={{ color: 'white' }}>Create Account</Link></Button>
                   </Grid>
                 )}
               </Box>

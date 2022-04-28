@@ -1,6 +1,6 @@
-import SignInForm from "../components/SignInForm";
+import SignUpForm from "../components/SignUpForm";
 
-const Authentication = () => {
+const SignUpPage = () => {
   return (
     <div 
       className="authentication-container" 
@@ -10,9 +10,9 @@ const Authentication = () => {
         justifyContent: 'space-between',
         margin: '30px auto'
       }}>
-      <SignInForm />
+      <SignUpForm />
     </div>
   );
 };
 
-export default Authentication;
+export default SignUpPage;

@@ -15,6 +15,7 @@ import FAQs from './routes/faqs';
 import Contact from './routes/contact';
 import Search from './routes/search';
 import Profile from './routes/profile';
+import SignUpPage from './routes/signuppage';
 
 import { addCollectionAndDocuments } from './utils/firebase/firebase.utils';
 
@@ -37,6 +38,7 @@ const App = () => {
                 <Route index element={<Home />} />
                 <Route path='shop/*' element={<Shop />} />
                 <Route path='auth' element={<Authentication />} />
+                <Route path='signup' element={<SignUpPage />} />
                 <Route path='checkout' element={<Checkout />} />
                 <Route path='faqs' element={<FAQs />} />
                 <Route path='contact' element={<Contact />} />
